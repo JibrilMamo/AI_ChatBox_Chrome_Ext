@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot Settings</title>
+    <style>
+        :root {
+            /* Light theme */
+            --primary-color: #2563eb;
+            --background-color: #ffffff;
+            --text-color: #1f2937;
+            --border-color: #e5e7eb;
+            --hover-color: #f3f4f6;
+            --error-color: #ef4444;
+            --success-bg: #ecfdf5;
+            --success-color: #047857;
+            --error-bg: #fef2f2;
+            --error-color: #b91c1c;
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme */
+            --primary-color: #3b82f6;
+            --background-color: #1f2937;
+            --text-color: #f9fafb;
+            --border-color: #374151;
+            --hover-color: #374151;
+            --error-color: #ef4444;
+            --success-bg: #064e3b;
+            --success-color: #34d399;
+            --error-bg: #7f1d1d;
+            --error-color: #fca5a5;
+        }
+
+        body {
+            width: 300px;
+            padding: 16px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin: 0 0 16px;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .help-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            flex: 1;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        button.secondary {
+            background: var(--hover-color);
+            color: var(--text-color);
+        }
+
+        .status {
+            margin-top: 12px;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .status.success {
+            background: var(--success-bg);
+            color: var(--success-color);
+            display: block;
+        }
+
+        .status.error {
+            background: var(--error-bg);
+            color: var(--error-color);
+            display: block;
+        }
+
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .theme-section {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover-color);
+        }
+
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Chatbot Settings</h1>
+    <div class="form-group">
+        <label for="api-key">OpenAI API Key</label>
+        <input type="password" id="api-key" placeholder="Enter your API key">
+        <p class="help-text">Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI's website</a></p>
+    </div>
+    <div class="button-group">
+        <button id="save">Save Settings</button>
+        <button id="test" class="secondary">Test Key</button>
+    </div>
+    <div id="status" class="status"></div>
+
+    <div class="theme-section">
+        <div class="theme-toggle" id="theme-toggle">
+            <svg class="theme-icon light-icon" viewBox="0 0 24 24">
+                <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"/>
+                <path d="M12 2V4M12 20V22M4 12H2M6.31412 6.31412L4.8999 4.8999M17.6859 6.31412L19.1001 4.8999M6.31412 17.69L4.8999 19.1042M17.6859 17.69L19.1001 19.1042M22 12H20"/>
+            </svg>
+            <svg class="theme-icon dark-icon" style="display: none;" viewBox="0 0 24 24">
+                <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+            </svg>
+            <span>Toggle Theme</span>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api-service.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html> 
